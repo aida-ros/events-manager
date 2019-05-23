@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import { loadEvents } from '../actions/events'
 import { connect } from 'react-redux'
 import EventsList from './EventsList.js'
+import CreateEventFormContainer from './CreateEventFormContainer';
 
 class EventsListContainer extends Component {
   componentDidMount() {
     this.props.loadEvents()
-    console.log('is this called?')
   }
   
   render() {
-    return <EventsList events={this.props.events}/>
+    return (
+      <div>
+        <EventsList events={this.props.events}/>
+        <CreateEventFormContainer />
+      </div>
+    )
   }
 }
 

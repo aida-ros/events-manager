@@ -15,10 +15,29 @@ export const loadEvents = () => (dispatch, getState) => {
   } else {
     request(`${baseUrl}/events`)
       .then(response => {
-        console.log('is it fetched?')
         dispatch(eventsFetched(response.body))
       })
       .catch(console.error)
   }
 
+}
+
+export const EVENT_CREATE_SUCCESS = 'EVENT_CREATE_SUCCES'
+
+const eventCreateSuccess = event => ({
+  type: EVENT_CREATE_SUCCESS,
+  event
+})
+
+export const createEvent = (data) => {
+  console.log("DATA was DISPATCHED")
+  return dispatch => {
+    request
+      .post(`${baseUrl}/events`)
+      .send(data)
+      .then(response => {
+        dispatch(eventCreateSuccess(response.body))
+      })
+      .catch(console.error)
+  }
 }
