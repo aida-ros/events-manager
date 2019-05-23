@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 export default class EventsList extends Component {
   render() {
     const { events } = this.props
-    console.log("THIS.PROPS.EVENTS", events)
 
     const showEvents = (events) => {
       if (!events) {
