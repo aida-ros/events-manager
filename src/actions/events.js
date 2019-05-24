@@ -67,23 +67,8 @@ const eventDeleteSuccess = (id) => ({
   id
 })
 
-// export const deleteEvent = (id) => (dispatch) => {
-//   request (`${baseUrl}/events`)
-//     .then(response => {
-//       response.body.map(event => {
-//         if (event.id === id) {
-//           return event
-//         }
-//       })
-//     .then(event => {
-//       console.log(id)
-//       dispatch(eventDeleteSuccess(id))
-//     })
-//     .catch(console.error)
-//   })
-// }
-
 export const deleteEvent = (id) => (dispatch) => {
-  console.log(id)
-  dispatch(eventDeleteSuccess(id))
+  request
+    .delete(`${baseUrl}/events/${id}`)
+    .then(dispatch(eventDeleteSuccess(id)))
 }
