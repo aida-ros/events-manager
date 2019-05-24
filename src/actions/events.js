@@ -15,6 +15,7 @@ export const loadEvents = () => (dispatch, getState) => {
   } else {
     request(`${baseUrl}/events`)
       .then(response => {
+        console.log(response.body)
         dispatch(eventsFetched(response.body))
       })
       .catch(console.error)
@@ -36,8 +37,53 @@ export const createEvent = (data) => {
       .post(`${baseUrl}/events`)
       .send(data)
       .then(response => {
+        console.log(response.body)
         dispatch(eventCreateSuccess(response.body))
       })
       .catch(console.error)
   }
+}
+
+export const EVENT_FETCHED = 'EVENT_FETCHED'
+
+const eventLoadSuccess = event => ({
+  type: EVENT_FETCHED,
+  event
+})
+
+export const loadEvent = (id) => (dispatch) => {
+  request(`${baseUrl}/events/${id}`)
+    .then(response => {
+      console.log(response.body)
+      dispatch(eventLoadSuccess(response.body))
+    })
+    .catch(console.error)
+}
+
+export const EVENT_DELETE_SUCCESS = 'EVENT_DELETE_SUCCESS'
+
+const eventDeleteSuccess = (id) => ({
+  type: EVENT_DELETE_SUCCESS,
+  id
+})
+
+// export const deleteEvent = (id) => (dispatch) => {
+//   request (`${baseUrl}/events`)
+//     .then(response => {
+//       response.body.map(event => {
+//         if (event.id === id) {
+//           return event
+//         }
+//       })
+//     .then(event => {
+//       console.log(id)
+//       dispatch(eventDeleteSuccess(id))
+//     })
+//     .catch(console.error)
+//   })
+// }
+
+export const deleteEvent = (id) => (dispatch) => {
+  console.log(id)
+  dispatch(eventDeleteSuccess(id))
 }

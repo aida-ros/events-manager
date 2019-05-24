@@ -9,7 +9,7 @@ export default class EventsList extends Component {
       if (!events) {
         return <h2>Loading...</h2>
       }
-      return events.map(event => <li key={event.id}><Link to={`events/:id`}>{event.name}</Link></li>)
+      return events.map(event => <li key={event.id}><Link to={`events/${event.id}`}>{event.name}</Link></li>)
     }
     return (
       <ul>
